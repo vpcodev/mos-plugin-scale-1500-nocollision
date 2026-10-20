@@ -1,9 +1,10 @@
 # MOS Plugin Repository Scale and GraphQL Fixtures
 
 This public repository is a reproducible test corpus for repository scanners that discover
-plugins, parse manifests, and fetch skill files from GitHub. The default branch contains **1,563
-plugin candidates**: 1,450 clean control plugins and 113 deliberately varied edge cases. Every
-candidate has at least one skill with substantive Markdown content; malformed manifests and
+plugins, parse manifests, and fetch skill files from GitHub. This no-collision variant contains
+**1,561 plugin candidates**: 1,450 clean control plugins and 111 deliberately varied edge cases.
+It omits the two case-only paths because the scanner rejects those paths before reading plugins.
+Every candidate has at least one skill with substantive Markdown content; malformed manifests and
 unusual Git objects are intentional test inputs, not examples to copy into production.
 
 The layout follows the repository scanner's plugin convention:
@@ -31,7 +32,6 @@ present in the committed Git tree and are covered by the repository totals.
 | Git object stress | 12 | Symlinks, a submodule entry, and a Git LFS pointer |
 | Duplicate plugin names | 10 | Distinct paths that declare the same plugin name |
 | Manifest layout conflicts | 12 | Root and compatibility manifests with different declared skills |
-| Case-only path collision | 2 | Two plugin paths that differ only by case |
 | GraphQL expression path | 1 | A committed path containing a quote, backslash, colon, `#`, and `@` |
 
 The 1,450 clean controls are the unambiguous valid baseline. Edge fixtures are counted separately

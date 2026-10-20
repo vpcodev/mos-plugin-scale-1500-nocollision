@@ -374,22 +374,6 @@ def add_git_object_edge_cases(root: Path):
     ).encode('utf-8')
     add_index_entry(root, '100644', write_git_object(root, long_skill), long_path)
 
-    for case_name in ['CaseOnly', 'caseonly']:
-        plugin = f'plugins/edge-case-collision/{case_name}'
-        skill_name = f'{case_name}-skill'
-        manifest = json.dumps({
-            'name': f'case-collision-{case_name}',
-            'description': 'Case-only path collision test.',
-            'version': '1.0.0',
-            'skills': [{'name': skill_name, 'path': f'skills/{skill_name}/SKILL.md'}],
-        }, ensure_ascii=False, indent=2).encode('utf-8') + b'\n'
-        skill = (
-            f'---\nname: {skill_name}\ndescription: case-only path collision test\n---\n\n'
-            f'# {skill_name}\n\nThis skill tests paths that differ only by letter case.\n'
-        ).encode('utf-8')
-        add_index_entry(root, '100644', write_git_object(root, manifest), f'{plugin}/plugin.json')
-        add_index_entry(root, '100644', write_git_object(root, skill), f'{plugin}/skills/{skill_name}/SKILL.md')
-
     plugin_path = 'plugins/edge-graphql-expression/quote"backslash\\colon:hash#at@'
     skill_name = 'quote"backslash\\colon:hash#at@'
     manifest = json.dumps({
